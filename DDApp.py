@@ -1,8 +1,12 @@
+import os
+import csv
+import shutil
+
 print()
 print("Direct debits App")
 print()
 
-file = open("DirectDebits.csv", "a")
+file = open("../DirectDebits.csv", "w+")
 
 
 DDs = {}
@@ -22,15 +26,17 @@ while True:
         name = input("Enter name: ")        
         amount = float(input("Enter amount: "))
         DDs[name] = amount
-        file.write(f"{name},{amount}\n")
+        with open("../DirectDebits.csv", "a") as file:
+            file.write(f"\n{name},{amount}")
+            print("Direct debit added")
 
     elif choice == "2":
         for name, amount in DDs.items():
             print(f"{name}: {amount}")
 
     elif choice == "3":
-        for name in DDs.items():
-            row.append()
+        with open("../DirectDebits.csv", "r") as file:
+            print(file.read())
             
     elif choice == "4":
         print("Goodbye!")  
